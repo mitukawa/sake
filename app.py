@@ -5,9 +5,7 @@ from io import BytesIO
 import numpy as np
 
 # Flaskの設定
-template_dir = "/sake/frontend/src/html"
-static_dir = "/sake/frontend/src"
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+app = Flask(__name__, )
 
 IMAGE = None  # 撮影した画像を格納する変数
 
