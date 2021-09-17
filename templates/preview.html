@@ -12,8 +12,12 @@
         <img src="{{shotImage}}" height="100%" width="100%" />
     </div>
 
-    <button onclick="location.href='/'">戻る</button>
-    <button onclick="location.href='/result'">OK</button>
+    <form action="/result" method="POST">
+
+        <input type="text" name="image" value="{{shotImage}}" hidden>
+        <button type="submit">OK</button>
+        <button onclick="location.href='/'">戻る</button>
+    </form>
 </body>
 
 </html>
