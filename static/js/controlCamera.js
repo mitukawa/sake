@@ -18,8 +18,8 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
     const constraints = {
       audio: false,
       video: {
-        width: { min: 800, max: 1920 }, // カメラの解像度を設定
-        height: { min: 600, max: 1080 },
+        width: 800, // カメラの解像度を設定
+        height: 600,
         facingMode: "user", // フロントカメラを利用
         // facingMode: {exact: "environment"}, //リアカメラを利用
       },
