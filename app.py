@@ -13,8 +13,7 @@ IMAGE = None  # 撮影した画像を格納する変数
 # トップページ
 @app.route("/")
 def index():
-    # return render_template("index.html")
-    return "hello flask"
+    return render_template("index.html")
 
 
 # # 撮影した画像を変数に格納してプレビュー画面を表示
