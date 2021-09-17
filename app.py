@@ -13,31 +13,32 @@ IMAGE = None  # 撮影した画像を格納する変数
 # トップページ
 @app.route("/")
 def index():
-    return render_template("index.html")
+    # return render_template("index.html")
+    return "hello flask"
 
 
-# 撮影した画像を変数に格納してプレビュー画面を表示
-@app.route("/previewImage", methods=["POST"])
-def image_preview():
+# # 撮影した画像を変数に格納してプレビュー画面を表示
+# @app.route("/previewImage", methods=["POST"])
+# def image_preview():
 
-    # 撮影した画像をデコード
-    global IMAGE
-    enc_img = request.form["image"]
-    IMAGE = base64.b64decode(enc_img.split(",")[1])
+#     # 撮影した画像をデコード
+#     global IMAGE
+#     enc_img = request.form["image"]
+#     IMAGE = base64.b64decode(enc_img.split(",")[1])
 
-    return render_template("preview.html", shotImage=enc_img)
+#     return render_template("preview.html", shotImage=enc_img)
 
 
-# 撮影した画像を基に画像処理を行って結果画面を表示
-@app.route("/result")
-def result():
-    # デコードした画像を読み込んでnumpyに変換
-    img_pil = Image.open(BytesIO(IMAGE))
-    image_np = np.array(img_pil)
-    print(image_np)
-    # これ以降に画像の処理を書いていく...
+# # 撮影した画像を基に画像処理を行って結果画面を表示
+# @app.route("/result")
+# def result():
+#     # デコードした画像を読み込んでnumpyに変換
+#     img_pil = Image.open(BytesIO(IMAGE))
+#     image_np = np.array(img_pil)
+#     print(image_np)
+#     # これ以降に画像の処理を書いていく...
 
-    return "result"
+#     return "result"
 
 
 if __name__ == "__main__":
