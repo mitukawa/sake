@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'sake-app'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_e50bebfa6bee4150b17b969fccb29edb }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_3da1d3542a014f07b24d3d9c5fde7a31 }}
