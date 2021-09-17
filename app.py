@@ -1,7 +1,8 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 import base64
 from PIL import Image
 from io import BytesIO
+from flask.helpers import url_for
 import numpy as np
 
 # Flaskの設定
@@ -17,15 +18,18 @@ def index():
 
 
 # 撮影した画像を変数に格納してプレビュー画面を表示
-@app.route("/previewImage", methods=["POST"])
+@app.route("/previewImage", methods=["GET","POST"])
 def image_preview():
+    if request.method == 'POST':
+        # 撮影した画像をデコード
+        global IMAGE
+        enc_img = request.form["image"]
+        IMAGE = base64.b64decode(enc_img.split(",")[1])
 
-    # 撮影した画像をデコード
-    global IMAGE
-    enc_img = request.form["image"]
-    IMAGE = base64.b64decode(enc_img.split(",")[1])
+        return render_template("preview.html", shotImage=enc_img)
 
-    return render_template("preview.html", shotImage=enc_img)
+    else:
+        return redirect(url_for("/"))
 
 
 # 撮影した画像を基に画像処理を行って結果画面を表示
