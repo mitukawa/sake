@@ -45,8 +45,8 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
       const videoW = video.offsetWidth;
       const videoH = video.offsetHeight;
       canvasContext.drawImage(video, 0, 0, videoW, videoH);
-      canvas.setAttribute("width", `${rate}%`);
-      canvas.setAttribute("height", `${rate}%`);
+      canvas.setAttribute("width", "10%");
+      canvas.setAttribute("height", "10%");
       formImage.value = canvas.toDataURL("image/png");
     });
   };
