@@ -48,7 +48,7 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
       canvas.setAttribute("width", w.toString());
       canvas.setAttribute("height", h.toString());
       canvasContext.drawImage(video, 0, 0, w, h);
-      formImage.value = canvas.toDataURL("image/jpeg", 0.75); //0.5だと上手くいった
+      formImage.value = canvas.toDataURL("image/jpeg", 1.0); //0.75だと上手くいった
     });
   };
 }
