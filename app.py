@@ -38,7 +38,8 @@ def result():
         image_np = np.array(img_pil)
         print(image_np)
         # これ以降に画像の処理を書いていく...
-        return '<image src="{}" width="{}" />'.format(img_base64, "100%")
+        onclick_element = '"location.href=\'/\'"'
+        return '<image src="{}" width="{} onclick="{}" />'.format(img_base64, "100%", onclick_element)
     else:
         return redirect("/")
 
