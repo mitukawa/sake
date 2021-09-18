@@ -38,7 +38,7 @@ def result():
         image_np = np.array(img_pil)
         print(image_np)
         # これ以降に画像の処理を書いていく...
-        return '<image src="{}" width="{}"/>'.format(img_base64, "100%")
+        return '<image src="{}" width="{}" />'.format(img_base64, "100%")
     else:
         return redirect("/")
 
