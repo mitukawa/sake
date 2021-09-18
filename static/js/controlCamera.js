@@ -41,7 +41,7 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
     // 撮影ボタンが押されたときのイベント処理（<video>の1フレームを<canvas>に表示）
     document.getElementById(shutterButtonId).addEventListener("click", () => {
       const canvasContext = canvas.getContext("2d");
-      const rate = 0.5;
+      const rate = 0.75; // 0.5は動作した
       const w = video.offsetWidth * rate;
       const h = video.offsetHeight * rate;
 
