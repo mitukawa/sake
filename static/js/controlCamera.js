@@ -41,14 +41,15 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
     // 撮影ボタンが押されたときのイベント処理（<video>の1フレームを<canvas>に表示）
     document.getElementById(shutterButtonId).addEventListener("click", () => {
       const canvasContext = canvas.getContext("2d");
-      const rate = 0.25
+      const reductionRate = 0.25  //送信する画像の縮小率
       const videoW = video.offsetWidth;
       const videoH = video.offsetHeight;
-      const canvasW = videoW*rate;
-      const canvasH = videoH*rate;
+      const canvasW = videoW*reductionRate;
+      const canvasH = videoH*reductionRate;
+
       canvas.setAttribute("width", canvasW.toString());
       canvas.setAttribute("height", canvasH.toString());
-      canvasContext.drawImage(video, 0, 0, videoW, videoH, 0, 0, canvasW, canvasH)
+      // canvasContext.drawImage(video, 0, 0, videoW, videoH, 0, 0, canvasW, canvasH)
       canvasContext.drawImage(video);
       formImage.value = canvas.toDataURL("image/png");
     });
