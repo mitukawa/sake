@@ -13,7 +13,21 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
     const video = document.getElementById(videoId);
     const canvas = document.getElementById(canvasId);
     const formImage = document.getElementById(formImageId);
-    const cameraDeviceIds = getCameraDeviceID();
+    const cameraDeviceIds = [
+      /* { deviceId, label } */
+    ];
+    navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
+      for (let len = mediaDevices.length, i = 0; i < len; i++) {
+        const item = mediaDevices[i];
+        // NOTE: カメラデバイスの場合、 kind プロパティには "videoinput" が入っている:
+        if (item.kind === "videoinput") {
+          const cameraId = item.deviceId;
+          const cameraLabel = item.label;
+          // NOTE: ここでデバイスID（とラベル）を適当な変数に保存しておく
+          cameraDeviceIds.push({ cameraId, cameraLabel });
+        }
+      }
+    });
     console.log(cameraDeviceIds);
 
     // カメラの設定
@@ -22,7 +36,7 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
       video: {
         width: { min: 800, max: 1920 }, // カメラの解像度を設定
         height: { min: 600, max: 1080 },
-        deviceId: cameraDeviceIds[cameraDeviceIds.length - 1],
+        deviceId: cameraDeviceIds[0],
         // facingMode: "user", // フロントカメラを利用
         // facingMode: {exact: "environment"}, //リアカメラを利用
       },
