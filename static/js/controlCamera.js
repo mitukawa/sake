@@ -13,6 +13,8 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
     const video = document.getElementById(videoId);
     const canvas = document.getElementById(canvasId);
     const formImage = document.getElementById(formImageId);
+    const cameraDeviceIds = getCameraDeviceID();
+    console.log(cameraDeviceIds);
 
     // カメラの設定
     const constraints = {
@@ -20,6 +22,7 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
       video: {
         width: { min: 800, max: 1920 }, // カメラの解像度を設定
         height: { min: 600, max: 1080 },
+        deviceId: cameraDeviceIds[cameraDeviceIds.length - 1],
         // facingMode: "user", // フロントカメラを利用
         // facingMode: {exact: "environment"}, //リアカメラを利用
       },
@@ -51,4 +54,29 @@ function controlCamera(videoId, canvasId, shutterButtonId, formImageId) {
       formImage.value = canvas.toDataURL("image/jpeg", 0.75); //0.75だと上手くいった
     });
   };
+}
+
+/**
+ * クライアントで使用できるカメラのidを取得
+ * 
+ * @param  {void}
+ * @return {array}   使用可能なカメラのidとlabelの配列(カメラが複数ある場合は取得したカメラを全て返す)
+ */
+function getCameraDeviceID() {
+  const cameraDeviceIds = [
+    /* { deviceId, label } */
+  ];
+  navigator.mediaDevices.enumerateDevices().then((mediaDevices) => {
+    for (let len = mediaDevices.length, i = 0; i < len; i++) {
+      const item = mediaDevices[i];
+      // NOTE: カメラデバイスの場合、 kind プロパティには "videoinput" が入っている:
+      if (item.kind === "videoinput") {
+        const cameraId = item.deviceId;
+        const cameraLabel = item.label;
+        // NOTE: ここでデバイスID（とラベル）を適当な変数に保存しておく
+        cameraDeviceIds.push({ cameraId, cameraLabel });
+      }
+    }
+  });
+  return cameraDeviceIds;
 }
